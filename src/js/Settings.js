@@ -1,9 +1,6 @@
 export default {
     password_length: 12,
-    UNICODE_MIN: 33,
-    UNICODE_MAX: 126,
     uppercase: {
-        allowed: true,
         COUNT: 26,
         UNICODES: [
             65, 66, 67, 68, 69, 70,
@@ -14,7 +11,6 @@ export default {
         ]
     },
     lowercase: {
-        allowed: true,
         COUNT: 26,
         UNICODES: [
             97, 98, 99, 100, 101, 102, 
@@ -25,7 +21,6 @@ export default {
         ]
     },
     digits: {
-        allowed: true,
         COUNT: 10,
         UNICODES: [
             48, 49, 50, 51, 52,

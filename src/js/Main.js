@@ -7,8 +7,8 @@ export default class {
         this.lowercaseEl = lowercaseEl;
         this.digitsEl = digitsEl;
         
-        this.randomChars = this.getRandomChars();
-        this.allowedChars = this.getSettings();
+        this.randomChars;
+        this.allowedChars;
     }
 
     getSettings() {
@@ -25,40 +25,21 @@ export default class {
     }
 
     generatePassword() {
+        // get our array of valid unicode values that we can choose from
         this.allowedChars = this.getSettings();
+
+        // create an array of cryptographically-random values
+        this.random = new Uint8Array(Settings.password_length);
+        window.crypto.getRandomValues(this.random);
+
+        // now we create the password string
         let password = '';
-        while(password.length != Settings.password_length) {
-            password += String.fromCharCode(this.getValidChar());
+        for (let idx = 0; idx < Settings.password_length; idx++) {
+            // use the next random value to choose a unicode character
+            const validIdx = this.random[idx] % this.allowedChars.length
+            password += String.fromCharCode(this.allowedChars[validIdx]);
         }
         this.output.innerHTML = password;
     }
 
-    getValidChar() {
-        
-        for (var i = 0; i < this.randomChars.length; i++) {
-            let char = this.randomChars[i];
-            let index = this.allowedChars.findIndex((element) => {
-                return element == char;
-            });
-            if (index != -1) {
-                this.randomChars[i] = -1;
-                return this.allowedChars[index];
-            }
-        }
-
-        // we must have failed
-        // so go about it again
-        this.randomChars = this.getRandomChars();
-        return this.getValidChar();
-    }
-
-    getRandomChars() {
-        let array = new Uint8Array(10);
-        window.crypto.getRandomValues(array);
-    
-        for (var i = 0; i < array.length; i++) {
-            array[1] = (array[i] % (Settings.UNICODE_MAX - Settings.UNICODE_MIN) ) + Settings.UNICODE_MIN;
-        }
-        return array;
-    }
 }
