@@ -1,0 +1,1 @@
+Minimal config to start projects and experiments
