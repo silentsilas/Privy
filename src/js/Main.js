@@ -47,20 +47,37 @@ export default class {
         range += Settings.lowercase.allowed ? Settings.lowercase.COUNT : 0;
         range += Settings.digits.allowed ? Settings.digits.COUNT : 0;
         this.output.innerHTML += `Unique Characters: ${range}<br>`;
+        let timeType = 'Hours';
 
         const entropyPerCharacter = Math.log2(range);
         const combinations = Math.pow(range, Settings.password_length);
-        this.output.innerHTML += `Total Password Combinations: ${combinations}<br>`;
+        this.output.innerHTML += `Total Password Combinations: ${combinations.toLocaleString()}<br>`;
         const totalEntropy = entropyPerCharacter * Settings.password_length;
         this.output.innerHTML += `Entropy: ${totalEntropy}<br><br>`;
+
         const richguy = 100000000000;
-        this.output.innerHTML += `Hours for a rich guy to crack it: <br>guaranteed at ${(combinations / richguy / 60 / 60).toLocaleString()} <br>averaged at ${(combinations / richguy / 60 / 60 / 2).toLocaleString()}<br><br>`;
+        let guyGuarantee = (combinations / richguy / 60 / 60);
+        if (guyGuarantee > 99999999) {
+            timeType = 'Days';
+            guyGuarantee = guyGuarantee / 24;
+        }
+        this.output.innerHTML += `${timeType} for a rich guy to crack it: <br>guaranteed at ${guyGuarantee.toLocaleString()} <br>averaged at ${(guyGuarantee / 2).toLocaleString()}<br><br>`;
 
         const richcompany = 1000000000000;
-        this.output.innerHTML += `Hours for a rich company to crack it: <br>guaranteed at ${(combinations / richcompany / 60 / 60).toLocaleString()} <br>averaged at ${(combinations / richcompany / 60 / 60 / 2).toLocaleString()}<br><br>`;
+        let companyGuarantee = (combinations / richcompany / 60 / 60);
+        if (companyGuarantee > 99999999) {
+            timeType = 'Days';
+            companyGuarantee = companyGuarantee / 24;
+        }
+        this.output.innerHTML += `${timeType} for a rich company to crack it: <br>guaranteed at ${companyGuarantee.toLocaleString()} <br>averaged at ${(companyGuarantee / 2).toLocaleString()}<br><br>`;
 
         const richstate = 100000000000000;
-        this.output.innerHTML += `Hours for a rich state to crack it: <br>guaranteed at ${(combinations / richstate / 60 / 60).toLocaleString()} <br>averaged at ${(combinations / richstate / 60 / 60 / 2).toLocaleString()}<br><br>`;
+        let stateGuarantee = (combinations / richstate / 60 / 60);
+        if (stateGuarantee > 99999999) {
+            timeType = 'Days';
+            stateGuarantee = stateGuarantee / 24;
+        }
+        this.output.innerHTML += `${timeType} for a rich state to crack it: <br>guaranteed at ${stateGuarantee.toLocaleString()} <br>averaged at ${(stateGuarantee/2).toLocaleString()}<br><br>`;
 
         this.output.innerHTML += '<br>Going by this chart: <a href="http://i.imgur.com/e3mGIFY.png">http://i.imgur.com/e3mGIFY.png</a><br><br>';
         console.log(Math.log2(100000) * 4);
