@@ -1,5 +1,3 @@
-import 'nes.css/scss/nes.scss';
-import './scss/nes_ranges.scss';
 import './scss/styles.scss';
 import Main from './js/Main.js';
 

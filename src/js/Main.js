@@ -1,5 +1,4 @@
 import Settings from './Settings.js';
-const zxcvbn = require('zxcvbn');
 
 export default class {
     constructor({output, uppercaseEl, lowercaseEl, digitsEl, lengthEl, lengthElOutput}) {
@@ -13,7 +12,6 @@ export default class {
         this.lengthEl.addEventListener('input', () => {
             this.lengthElOutput.innerHTML = this.lengthEl.value;
         });
-        console.log(zxcvbn);
     }
 
     // we'll check the state of our checkboxes and update our Settings obj accordingly
@@ -41,7 +39,7 @@ export default class {
     }
 
     
-    calculateEntropy(password) {
+    calculateEntropy() {
         let range = 0;
         range += Settings.uppercase.allowed ? Settings.uppercase.COUNT : 0;
         range += Settings.lowercase.allowed ? Settings.lowercase.COUNT : 0;
@@ -103,7 +101,7 @@ export default class {
         }
         this.output.innerHTML += `${password}<br><br>`;
 
-        this.calculateEntropy(password);
+        this.calculateEntropy();
     }
 
 

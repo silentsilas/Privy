@@ -6,18 +6,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/, use: [ 'file-loader' ]
-      },
-      {
-        test: /\.(ttf|eot|woff|woff2)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "static/fonts/[name].[ext]",
-          },
-        },
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
