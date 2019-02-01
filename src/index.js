@@ -1,7 +1,9 @@
+import 'nes.css/scss/nes.scss';
+import './scss/nes_ranges.scss';
 import './scss/styles.scss';
 import Main from './js/Main.js';
 
-const debugDiv = document.querySelector("#debug");
+const resultsDiv = document.querySelector("#results");
 const uppercaseEl = document.querySelector("#uppercase");
 const lowercaseEl = document.querySelector("#lowercase");
 const digitsEl = document.querySelector("#digits");
@@ -11,12 +13,12 @@ const generateBtn = document.querySelector("#generate");
 
 if (window.crypto == null) {
     let errorMsg = "Browser does not support Crypto Web API";
-    debugDiv.innerHTML = errorMsg;
+    resultsDiv.innerHTML = errorMsg;
     throw new Error(errorMsg);
 }
 
 const app = new Main({
-    output: debugDiv,
+    output: resultsDiv,
     uppercaseEl: uppercaseEl,
     lowercaseEl: lowercaseEl,
     digitsEl: digitsEl,

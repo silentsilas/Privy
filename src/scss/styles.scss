@@ -1,6 +1,14 @@
+@font-face {
+    font-family: "Press Start 2P";
+    font-weight: 300;
+    font-style: normal;
+    src: url('/static/fonts/PressStart2P-Regular.ttf') format('truetype');
+}
+
 html {
   box-sizing: border-box;
   height: 100%;
+  font-family: "Press Start 2P";
 }
 
 *, *:before, *:after {
@@ -10,4 +18,19 @@ html {
 html, body {
   margin: 0;
   padding: 0;
+}
+
+.options {
+  max-width: 400px;
+  label {
+    display: block;
+  }
+}
+
+body {
+  font-size: 14px;
+}
+
+#results {
+  font-size: 12px;
 }

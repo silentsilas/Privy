@@ -54,13 +54,13 @@ export default class {
         const totalEntropy = entropyPerCharacter * Settings.password_length;
         this.output.innerHTML += `Entropy: ${totalEntropy}<br><br>`;
         const richguy = 100000000000;
-        this.output.innerHTML += `Hours for a rich guy to crack it: guaranteed at ${combinations / richguy / 60 / 60}, averaged at ${combinations / richguy / 60 / 60 / 2}<br>`;
+        this.output.innerHTML += `Hours for a rich guy to crack it: <br>guaranteed at ${(combinations / richguy / 60 / 60).toLocaleString()} <br>averaged at ${(combinations / richguy / 60 / 60 / 2).toLocaleString()}<br><br>`;
 
         const richcompany = 1000000000000;
-        this.output.innerHTML += `Hours for a rich company to crack it: guaranteed at ${combinations / richcompany / 60 / 60}, averaged at ${combinations / richcompany / 60 / 60 / 2}<br>`;
+        this.output.innerHTML += `Hours for a rich company to crack it: <br>guaranteed at ${(combinations / richcompany / 60 / 60).toLocaleString()} <br>averaged at ${(combinations / richcompany / 60 / 60 / 2).toLocaleString()}<br><br>`;
 
         const richstate = 100000000000000;
-        this.output.innerHTML += `Hours for a rich state to crack it: guaranteed at ${combinations / richstate / 60 / 60}, averaged at ${combinations / richstate / 60 / 60 / 2}<br>`;
+        this.output.innerHTML += `Hours for a rich state to crack it: <br>guaranteed at ${(combinations / richstate / 60 / 60).toLocaleString()} <br>averaged at ${(combinations / richstate / 60 / 60 / 2).toLocaleString()}<br><br>`;
 
         this.output.innerHTML += '<br>Going by this chart: <a href="http://i.imgur.com/e3mGIFY.png">http://i.imgur.com/e3mGIFY.png</a><br><br>';
         console.log(Math.log2(100000) * 4);

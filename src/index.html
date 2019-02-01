@@ -8,31 +8,31 @@
 </head>
 <body>
 
-  <div>
-      <input type="range" id="length" name="length" min="1" max="64" value="16"><br>
-      <label for="length">Length: </label><span id="lengthOutput">16</span>
+  <div class="options">
+    <label for="uppercase">
+      <input class="nes-checkbox" type="checkbox" id="uppercase" checked></input>
+      <span>Uppercase</span>
+    </label>
+  
+    <label for="lowercase">
+      <input class="nes-checkbox" type="checkbox" id="lowercase" checked></input>
+      <span>Lowercase</span>
+    </label>
+  
+    <label for="digits">
+      <input class="nes-checkbox" type="checkbox" id="digits" checked></input>
+      <span>Digits</span>
+    </label>
+  
+    <label for="length">
+      <input class="nes-range" type="range" id="length" name="length" min="1" max="64" value="16"><br>
+      Length: <span id="lengthOutput">16</span>
+    </label>
   </div>
-
-  <div>
-    <input type="checkbox" id="uppercase" checked></input>
-    <label for="uppercase">Uppercase</label>
-  </div>
-    
-  <div>
-    <input type="checkbox" id="lowercase" checked></input>
-    <label for="lowercase">Lowercase</label>
-  </div>
-
-  <div>
-    <input type="checkbox" id="digits" checked></input>
-    <label for="digits">Digits</label>
-  </div>
-
-  <div>
-    <button id="generate">Generate!</button>
-  </div>
+  
+  <button class="nes-btn is-primary" id="generate">Generate!</button>
   <br />
-  <div id="debug"></div>
+  <div id="results"></div>
   <a href="https://github.com/Poeticode/Passwork">View Source</a>
 </body>
 </html>
