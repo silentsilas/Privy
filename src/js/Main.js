@@ -1,21 +1,31 @@
 import Settings from './Settings.js';
 
 export default class {
-    constructor({output}) {
+    constructor({output, uppercaseEl, lowercaseEl, digitsEl}) {
         this.output = output;
+        this.uppercaseEl = uppercaseEl;
+        this.lowercaseEl = lowercaseEl;
+        this.digitsEl = digitsEl;
+        
         this.randomChars = this.getRandomChars();
         this.allowedChars = this.getSettings();
     }
 
     getSettings() {
         let allowed = [];
-        allowed = Settings.uppercase.allowed ? allowed.concat(Settings.uppercase.UNICODES) : allowed;
-        allowed = Settings.lowercase.allowed ? allowed.concat(Settings.lowercase.UNICODES) : allowed;
-        allowed = Settings.digits.allowed ? allowed.concat(Settings.digits.UNICODES) : allowed;
+        allowed = this.uppercaseEl.checked ? allowed.concat(Settings.uppercase.UNICODES) : allowed;
+        allowed = this.lowercaseEl.checked ? allowed.concat(Settings.lowercase.UNICODES) : allowed;
+        allowed = this.digitsEl.checked ? allowed.concat(Settings.digits.UNICODES) : allowed;
+        if (allowed.length <= 0) {
+            let errorMsg = "Must enable at least one type of character.";
+            this.output.innerHTML = errorMsg;
+            throw new Error(errorMsg);
+        }
         return allowed;
     }
 
     generatePassword() {
+        this.allowedChars = this.getSettings();
         let password = '';
         while(password.length != Settings.password_length) {
             password += String.fromCharCode(this.getValidChar());

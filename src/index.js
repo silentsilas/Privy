@@ -1,17 +1,25 @@
 import './scss/styles.scss';
-
 import Main from './js/Main.js';
 
-if (window.crypto == null) {
-    throw new Exception("Browser does not support Crypto Web API");
-}
 const debugDiv = document.querySelector("#debug");
-const app = new Main({output: debugDiv});
-app.generatePassword();
+const uppercaseEl = document.querySelector("#uppercase");
+const lowercaseEl = document.querySelector("#lowercase");
+const digitsEl = document.querySelector("#digits");
+const generateBtn = document.querySelector("#generate");
 
-// for (var i = 0; i < array.length; i++) {
+if (window.crypto == null) {
+    let errorMsg = "Browser does not support Crypto Web API";
+    debugDiv.innerHTML = errorMsg;
+    throw new Error(errorMsg);
+}
 
-//     debugDiv.innerHTML += String.fromCharCode(charCode) +", ";
-// }
+const app = new Main({
+    output: debugDiv,
+    uppercaseEl: uppercaseEl,
+    lowercaseEl: lowercaseEl,
+    digitsEl: digitsEl
+});
 
-
+generateBtn.addEventListener('click', (event) => {
+    app.generatePassword();
+});
