@@ -1,8 +1,8 @@
 {
-  "name": "webpack-babel-sass-starter",
+  "name": "passwork",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Juan Camilo González <info@juancgonzalez.com> (http://juancgonzalez.com)",
+  "author": "Silas Tippens <me@silentsilas.com> (https://silentsilas.com)",
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
