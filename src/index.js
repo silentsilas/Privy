@@ -5,6 +5,8 @@ const debugDiv = document.querySelector("#debug");
 const uppercaseEl = document.querySelector("#uppercase");
 const lowercaseEl = document.querySelector("#lowercase");
 const digitsEl = document.querySelector("#digits");
+const lengthEl = document.querySelector("#length");
+const lengthElOutput = document.querySelector("#lengthOutput");
 const generateBtn = document.querySelector("#generate");
 
 if (window.crypto == null) {
@@ -17,7 +19,9 @@ const app = new Main({
     output: debugDiv,
     uppercaseEl: uppercaseEl,
     lowercaseEl: lowercaseEl,
-    digitsEl: digitsEl
+    digitsEl: digitsEl,
+    lengthEl: lengthEl,
+    lengthElOutput: lengthElOutput
 });
 
 generateBtn.addEventListener('click', (event) => {
