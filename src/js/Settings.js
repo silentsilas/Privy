@@ -1,3 +1,4 @@
+// https://www.ssec.wisc.edu/~tomw/java/unicode.html#x0000
 export default {
     password_length: 10,
     uppercase: {
@@ -28,6 +29,55 @@ export default {
         UNICODES: [
             48, 49, 50, 51, 52,
             53, 54, 55, 56, 57
+        ]
+    },
+    curly_brackets: {
+        allowed: false,
+        COUNT: 2,
+        UNICODES: [
+            123, 125
+        ]
+    },
+    tilde: {
+        allowed: false,
+        COUNT: 1,
+        UNICODES: [
+            126
+        ]
+    },
+    carrot: {
+        allowed: false,
+        COUNT: 1,
+        UNICODES: [
+            94
+        ]
+    },
+    square_brackets: {
+        allowed: false,
+        COUNT: 2,
+        UNICODES: [
+            91, 93
+        ]
+    },
+    backwards_slash: {
+        allowed: false,
+        COUNT: 2,
+        UNICODES: [
+            92
+        ]
+    },
+    at: {
+        allowed: false,
+        COUNT: 1,
+        UNICODES: [
+            64
+        ]
+    },
+    punctuation: {
+        allowed: false,
+        COUNT: 5,
+        UNICODES: [
+            63, 59, 58, 46
         ]
     }
 }

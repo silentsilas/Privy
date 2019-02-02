@@ -26,10 +26,5 @@
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.7"
-  },
-  "dependencies": {
-    "file-loader": "^3.0.1",
-    "nes.css": "^1.0.0",
-    "zxcvbn": "^4.4.2"
   }
 }
