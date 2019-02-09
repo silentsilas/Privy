@@ -1,5 +1,6 @@
 import Settings from './Settings.js';
 import Entropy from './Entropy.js';
+import Words from './Words.js';
 
 export default class {
     constructor({output, uppercaseEl, lowercaseEl, digitsEl, lengthEl, lengthElOutput}) {
@@ -13,6 +14,7 @@ export default class {
         this.lengthEl.addEventListener('input', () => {
             this.lengthElOutput.innerHTML = this.lengthEl.value;
         });
+        this.words = new Words();
     }
 
     // we'll check the state of our checkboxes and update our Settings obj accordingly
