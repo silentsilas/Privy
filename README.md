@@ -6,6 +6,10 @@ TODO:
 - [ ] Add XKCD-style passwords
 
 ## Json Wordlist Generator
-Inside `json_gen`, you'll find `create_list.js`. You can give it a wordlist (right now I have it hardcoded to use the words_alpha.txt file in the same directory). `node create_list.js 4` will create a `words_4.json` file full of every word with a character length of 4.
+Inside `json_gen`, you'll find `create_list.js`. You can give it a wordlist (right now I have it hardcoded to use the words_alpha.txt file in the same directory). 
+
+`node create_list.js [char_length]`
+
+Thus, `node create_list.js 4` will create a `words_4.json` file full of every word with a character length of 4.
 
 I got the wordlist from here: https://github.com/dwyl/english-words/blob/master/words_alpha.txt
