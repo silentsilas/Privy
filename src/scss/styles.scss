@@ -1,3 +1,5 @@
+@import 'min.scss';
+
 html {
   box-sizing: border-box;
   height: 100%;
@@ -13,14 +15,23 @@ html, body {
 }
 
 .options {
+  float: left;
   max-width: 400px;
-  label {
-    display: block;
-  }
+  
+}
+
+#words {
+  max-width: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
 }
 
 body {
-  padding: 12px;
+  // padding: 12px;
   font-size: 14px;
   word-wrap: break-word;
 }
@@ -30,14 +41,14 @@ body {
 }
 
 .crack_container {
-  position: relative;
-  left: 50%;
+  // float: left;
+  // left: 50%;
   padding: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
   border: 1px solid #efefef;
-  max-width: 300px;
+  // max-width: 300px;
   
 }
 .crack_header {

@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 
 module.exports = {
   module: {
@@ -57,7 +58,10 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html'
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new webpack.ProvidePlugin({
+      noUiSlider: 'nouislider'
+    })
   ],
   watchOptions: {
     ignored: ['/node_modules/']

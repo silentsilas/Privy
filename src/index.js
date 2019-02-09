@@ -8,6 +8,8 @@ const digitsEl = document.querySelector("#digits");
 const lengthEl = document.querySelector("#length");
 const lengthElOutput = document.querySelector("#lengthOutput");
 const generateBtn = document.querySelector("#generate");
+const wordsEl = document.querySelector("#words");
+const wordLengthElOutput = document.querySelector("#totalWordsOutput");
 
 if (window.crypto == null) {
     let errorMsg = "Browser does not support Crypto Web API";
@@ -21,7 +23,9 @@ const app = new Main({
     lowercaseEl: lowercaseEl,
     digitsEl: digitsEl,
     lengthEl: lengthEl,
-    lengthElOutput: lengthElOutput
+    lengthElOutput: lengthElOutput,
+    wordsEl: wordsEl,
+    wordLengthElOutput: wordLengthElOutput
 });
 
 generateBtn.addEventListener('click', (event) => {

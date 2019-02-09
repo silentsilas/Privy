@@ -8,38 +8,54 @@
 </head>
 <body>
 
-  <div class="options">
-    <h2>Password Settings</h2>
-    <label for="uppercase">
-      <input class="nes-checkbox" type="checkbox" id="uppercase" checked></input>
-      <span>Uppercase</span>
-    </label>
-  
-    <label for="lowercase">
-      <input class="nes-checkbox" type="checkbox" id="lowercase" checked></input>
-      <span>Lowercase</span>
-    </label>
-  
-    <label for="digits">
-      <input class="nes-checkbox" type="checkbox" id="digits" checked></input>
-      <span>Digits</span>
-    </label>
-  
-    <label for="length">
-      <input class="nes-range" type="range" id="length" name="length" min="1" max="64" value="16"><br>
-      Length: <span id="lengthOutput">16</span>
-    </label>
+  <div class="row">
+    <div class="col c6">
+      <h2>Password Settings</h2>
+      <label for="uppercase">
+        <input class="nes-checkbox" type="checkbox" id="uppercase" checked></input>
+        <span>Uppercase</span>
+      </label>
+    
+      <label for="lowercase">
+        <input class="nes-checkbox" type="checkbox" id="lowercase" checked></input>
+        <span>Lowercase</span>
+      </label>
+    
+      <label for="digits">
+        <input class="nes-checkbox" type="checkbox" id="digits" checked></input>
+        <span>Digits</span>
+      </label>
+    
+      <label for="length">
+        <input class="nes-range" type="range" id="length" name="length" min="1" max="64" value="16"><br>
+        Length: <span id="lengthOutput">16</span>
+      </label>
+    </div>
 
-    <h2>Passphrase Settings</h2>
-    <label for="xkcd">
-      <input type="checkbox" id="xkcd">
-      <span>Passphrase</span></input>
-    </label>
+    <div class="col c6">
+      <h2>Passphrase Settings</h2>
+      <label for="xkcd">
+        <input type="checkbox" id="xkcd">
+        <span>Passphrase</span></input>
+      </label>
+      <div id="words"></div>
+      <span id="totalWordsOutput"></span>
+    </div>
   </div>
-  
-  <button class="nes-btn is-primary" id="generate">Generate!</button>
-  <br />
-  <div id="results"></div>
+
+  <div class="row">
+    <div class="col c4">&nbsp</div>
+    <div class="col c4">
+      <button class="btn btn-b btn-sm smooth" id="generate">Generate!</button>
+    </div>
+    <div class="col c4">&nbsp</div>
+  </div>  
+  <div class="row">
+    <div class="col col6">
+      <div id="results"></div>
+    </div>
+  </div>
+
   <a href="https://github.com/Poeticode/Passwork">View Source</a>
 </body>
 </html>

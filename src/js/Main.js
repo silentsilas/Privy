@@ -1,9 +1,10 @@
 import Settings from './Settings.js';
 import Entropy from './Entropy.js';
 import Words from './Words.js';
+import 'nouislider/distribute/nouislider.css';
 
 export default class {
-  constructor({output, uppercaseEl, lowercaseEl, digitsEl, lengthEl, lengthElOutput}) {
+  constructor({output, uppercaseEl, lowercaseEl, digitsEl, lengthEl, lengthElOutput, wordsEl, wordLengthElOutput}) {
     this.output = output;
     this.uppercaseEl = uppercaseEl;
     this.lowercaseEl = lowercaseEl;
@@ -14,7 +15,30 @@ export default class {
     this.lengthEl.addEventListener('input', () => {
       this.lengthElOutput.innerHTML = this.lengthEl.value;
     });
+
+    this.wordsSlider = wordsEl;
+    this.wordLengthOutput = wordLengthElOutput;
+
+    noUiSlider.create(this.wordsSlider, {
+        start: [4, 31],
+        connect: true,
+        range: {
+            'min': 1,
+            'max': 31
+        }
+    });
     this.words = new Words();
+    this.wordsSlider.noUiSlider.on('update', (values, handle) => {
+      const min = Math.round(values[0]);
+      const max = Math.round(values[1]);
+      let totalWords = 0;
+      for (let idx = min - 1; idx < max; idx++) {
+        totalWords += this.words.wordLengths[idx];
+      }
+      this.wordLengthOutput.innerHTML = `
+      Characters: ${min} - ${max}<br /> 
+      Total Words: ${totalWords}`;
+    });
   }
 
   // we'll check the state of our checkboxes and update our Settings obj accordingly
