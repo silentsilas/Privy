@@ -9,38 +9,29 @@
 <body>
 
   <div class="row">
-    <div class="col c6">
-      <h2>Password Settings</h2>
-      <label for="uppercase">
-        <input class="nes-checkbox" type="checkbox" id="uppercase" checked></input>
-        <span>Uppercase</span>
-      </label>
-    
-      <label for="lowercase">
-        <input class="nes-checkbox" type="checkbox" id="lowercase" checked></input>
-        <span>Lowercase</span>
-      </label>
-    
-      <label for="digits">
-        <input class="nes-checkbox" type="checkbox" id="digits" checked></input>
-        <span>Digits</span>
-      </label>
-    
-      <label for="length">
-        <input class="nes-range" type="range" id="length" name="length" min="1" max="64" value="16"><br>
-        Length: <span id="lengthOutput">16</span>
-      </label>
-    </div>
-
-    <div class="col c6">
-      <h2>Passphrase Settings</h2>
-      <label for="xkcd">
-        <input type="checkbox" id="xkcd">
+    <div class="col c4">&nbsp</div>
+    <div class="col c4">
+      <label>
+        <input type="radio" id="phrase" name="passType" value="passphrase">
         <span>Passphrase</span></input>
       </label>
-      <div id="words"></div>
-      <span id="totalWordsOutput"></span>
+      <label>
+        <input type="radio" id="word" name="passType" value="password">
+        <span>Password</span></input>
+      </label>
     </div>
+    <div class="col c4">&nbsp</div>
+  </div>
+
+  <div class="row">
+    <div class="col c4">&nbsp</div>
+    <div class="col c4">
+      <h2>Password Settings</h2>
+      <div id="settings">
+        <!-- We'll dynamically place our password/phrase form here-->
+      </div>
+    </div>
+    <div class="col c4">&nbsp</div>
   </div>
 
   <div class="row">

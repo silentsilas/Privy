@@ -1,5 +1,3 @@
-import Settings from './Settings.js';
-
 export default class {
 
   static createComponent({richActor, combinations}) {
@@ -106,14 +104,10 @@ export default class {
       return container;
   }
 
-  static calculateEntropy(div) {
-    let range = 0;
-    range += Settings.uppercase.allowed ? Settings.uppercase.COUNT : 0;
-    range += Settings.lowercase.allowed ? Settings.lowercase.COUNT : 0;
-    range += Settings.digits.allowed ? Settings.digits.COUNT : 0;
+  static calculateEntropy(div, range, length) {
     const entropyPerCharacter = Math.log2(range);
-    const combinations = Math.pow(range, Settings.password_length);
-    const totalEntropy = entropyPerCharacter * Settings.password_length;
+    const combinations = Math.pow(range, length);
+    const totalEntropy = entropyPerCharacter * length;
 
     const entropyDiv = document.createElement('div');
     entropyDiv.classList.add('entropy');
