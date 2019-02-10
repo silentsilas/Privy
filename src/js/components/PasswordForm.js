@@ -13,6 +13,7 @@ export default class {
     this.digitsEl;
     this.charLengthId = 'passwordLength';
     this.charLengthEl;
+    this.charLength = 16;
     this.charLengthOutputId = 'passwordLengthOutput';
     this.charLengthOutputEl;
     this.content = `
@@ -30,11 +31,9 @@ export default class {
       <input class="nes-checkbox" type="checkbox" id="${this.digitsId}" checked></input>
       <span>Digits</span>
     </label>
-    
-    <label>
-      <input class="nes-range" type="range" id="${this.charLengthId}" name="length" min="1" max="64" value="16"><br>
-      Length: <span id="${this.charLengthOutputId}">16</span>
-    </label>`
+    <div class="slider" id="${this.charLengthId}"></div>
+    Length: <span id="${this.charLengthOutputId}">16</span>
+    `
   }
 
   setup() {
@@ -45,9 +44,21 @@ export default class {
     this.charLengthEl = document.getElementById(this.charLengthId);
     this.charLengthOutputEl = document.getElementById(this.charLengthOutputId);
 
-    this.charLengthEl.addEventListener('input', () => {
-      this.charLengthOutputEl.innerHTML = this.charLengthEl.value;
+    noUiSlider.create(this.charLengthEl, {
+        start: [this.charLength],
+        range: {
+            'min': [1],
+            'max': [64]
+        }
     });
+
+    this.charLengthEl.noUiSlider.on('update', (values, handle) => {
+      const newVal = Math.round(values[0]);
+      this.charLengthOutputEl.innerHTML = newVal;
+      this.charLength = newVal;
+    });
+    console.log(this.charLengthEl);
+
     this.generatePassword = this.generatePassword.bind(this);
     this.genBtn.addEventListener('click', this.generatePassword);
     
@@ -62,7 +73,7 @@ export default class {
     Settings.uppercase.allowed = this.uppercaseEl.checked;
     Settings.lowercase.allowed = this.lowercaseEl.checked;
     Settings.digits.allowed = this.digitsEl.checked;
-    Settings.password_length = this.charLengthEl.value;
+    Settings.password_length = this.charLength;
   }
 
   getAllowedChars() {

@@ -11,7 +11,7 @@ for (let idx = 1; idx < 32; idx++) {
 
 export default class {
   constructor() {
-    console.log(wordLists);
+    this.wordLists = wordLists;
     this.wordLengths = wordLengths;
   }
 }
