@@ -1,15 +1,29 @@
-TODO:
-- [x] Ability to set required length of generated password.
-- [ ] Ability to set required minimum for a certain character type to appear.
-- [ ] Add common symbols to list of character types.
-- [ ] Tally up the total search space, and show the calculations to derive entropy of generated password.
-- [ ] Add XKCD-style passwords
+# passworker
 
-## Json Wordlist Generator
-Inside `json_gen`, you'll find `create_list.js`. You can give it a wordlist (right now I have it hardcoded to use the words_alpha.txt file in the same directory). 
+## Project setup
+```
+npm install
+```
 
-`node create_list.js [char_length]`
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-Thus, `node create_list.js 4` will create a `words_4.json` file full of every word with a character length of 4.
+### Compiles and minifies for production
+```
+npm run build
+```
 
-I got the wordlist from here: https://github.com/dwyl/english-words/blob/master/words_alpha.txt
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

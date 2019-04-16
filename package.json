@@ -1,31 +1,41 @@
 {
-  "name": "passwork",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Silas Tippens <me@silentsilas.com> (https://silentsilas.com)",
-  "license": "MIT",
+  "name": "passworker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An interactive and educational password generator",
+  "author": "Silent Silas <me@silentsilas.com>",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
+  },
+  "main": "background.js",
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "nouislider": "^13.1.4",
+    "vue": "^2.6.6",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^8.0.0",
+    "vue-router": "^3.0.1",
+    "zooming": "^2.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "autoprefixer": "^9.1.5",
-    "babel-loader": "^8.0.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "css-loader": "^1.0.0",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.4.2",
-    "node-sass": "^4.9.3",
-    "nouislider": "^13.1.0",
-    "postcss-loader": "^3.0.0",
-    "resolve-url-loader": "^3.0.0",
+    "@ionic/vue": "0.0.4",
+    "@types/nouislider": "^9.0.5",
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-typescript": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
+    "electron": "^4.0.0",
+    "fibers": "^3.1.1",
+    "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.0",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.7"
-  }
+    "typescript": "^3.2.1",
+    "vue-cli-plugin-electron-builder": "^1.2.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "productName": "Passworker"
 }

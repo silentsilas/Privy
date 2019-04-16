@@ -1,0 +1,123 @@
+<template>
+    <div class="entropy_wrapper">
+        <div class="entropy">
+            Unique Characters: {{ range }}<br />
+            Total Password Combinations: {{ combinations.toLocaleString() }}<br />
+            Entropy: {{ totalEntropy }}<br />
+        </div>
+        <div>
+            <div class="crack_container" id="guy">
+                <actor :name="guy.name" :guesses="guy.guesses" :combinations="combinations"></actor>
+            </div>
+            <div class="crack_container" id="company">
+                <actor :name="company.name" :guesses="company.guesses" :combinations="combinations"></actor>
+            </div>
+            <div class="crack_container" id ="state">
+                <actor :name="state.name" :guesses="state.guesses" :combinations="combinations"></actor>
+            </div>
+            <div class="crack_container" id="universe">
+                <actor :name="world.name" :guesses="world.guesses" :combinations="combinations"></actor>
+            </div>
+            <br />
+                Going by <router-link :to="`/chart/${totalEntropy}`"><span>this chart.</span></router-link>
+            <br>
+            <br>
+        </div>
+    </div>
+</template>
+
+
+<script lang="ts">
+const path = require('path');
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import Actor from '@/components/Actor.vue';
+
+interface Attacker {
+    name: string;
+    guesses: number;
+}
+
+@Component({
+    components: {
+        Actor,
+    },
+})
+export default class Password extends Vue {
+    @Prop(Number) private length!: number;
+    @Prop(Number) private range!: number;
+
+    private guy: Attacker = {
+        name: 'that one sketchy dude in a black hoodie at your local coffee shop',
+        guesses: 100000000000,
+    };
+
+    private company: Attacker = {
+        name: 'Evil Corp',
+        guesses: 1000000000000,
+    };
+
+    private state: Attacker = {
+        name: 'Big Brother',
+        guesses: 100000000000000,
+    };
+
+    private world: Attacker = {
+        name: 'The Illuminati',
+        guesses: 1000000000000000,
+    };
+
+    private timescale = (seconds: number): string => {
+        let scale: string = 'seconds';
+        if (seconds > 60) {
+            scale = 'minutes';
+            seconds = seconds / 60;
+        }
+        if (seconds > 60) {
+            scale = 'hours';
+            seconds = seconds / 60;
+        }
+        if (seconds > 24) {
+            scale = 'days';
+            seconds = seconds / 24;
+        }
+        if (seconds > 365) {
+            scale = 'years';
+            seconds = seconds / 365;
+        }
+        if (seconds > 1000) {
+            scale = 'millennia';
+            seconds = seconds / 1000;
+        }
+        if (seconds > 1000) {
+            scale = 'million years';
+            seconds = seconds / 1000;
+        }
+        if (seconds > 1000) {
+            scale = 'billion years';
+            seconds = seconds / 1000;
+        }
+        if (seconds > 1000) {
+            scale = 'trillion years';
+            seconds = seconds / 1000;
+        }
+        return scale;
+    }
+
+    private guarantee = (combinations: number, guessesPerSecond: number) => {
+        return combinations / guessesPerSecond;
+    }
+
+    get combinations(): number {
+        return Math.pow(this.range, this.length);
+    }
+
+    private get entropyPerCharacter(): number {
+        return Math.log2(this.range);
+    }
+
+    private get totalEntropy() {
+        return this.entropyPerCharacter * this.length;
+    }
+
+}
+</script>
