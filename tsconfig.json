@@ -1,41 +1,36 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "types": [
-      "webpack-env"
-    ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
+		"target": "es5",
+	  "module": "esnext",
+		"strict": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"experimentalDecorators": true,
+		"noImplicitAny": true,
+	  "moduleResolution": "node",
+	  "lib": [
+			"es2015",
+			"dom"
+		],
+		"baseUrl": ".",
+	  "paths": {
+			"~/*": ["./*"],
+		  "@/*": ["src/*"]
+		},
+		"types": [
+			"node"
     ],
     "typeRoots": ["typings/*.d.ts"]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx", 
-    "typings/*.d.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.vue",
+    "test/**/*.ts",
+    "typings/*.d.ts"
+	],
+	"exclude": [
+		".quasar",
+		"dist",
+		"node_modules"
+	]
 }

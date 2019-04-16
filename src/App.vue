@@ -1,25 +1,51 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div id="q-app">
+  <q-layout>
+    <!-- optional -->
+    <q-layout-header>
+      <!-- content; any -->
+      <q-toolbar>
+        <q-toolbar-title>
+          Passworker
+          <span slot="subtitle">Generator</span>
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-layout-header>
+
+    <!-- REQUIRED -->
+    <q-page-container>
+
+
+        <router-view />
+
+    </q-page-container>
+  </q-layout>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+@Component({
+  // @ts-ignore
+  meta () {
+    return {
+      titleTemplate: (title: any) => `Quasar TypeScript - ${title}`,
+      meta: {
+        description: { name: 'description', content: 'Main description' },
+        // Define the viewport depending on device (prevent zoom on mobile devices)
+        viewport: {
+          name: 'viewport',
+          content: this.$q.platform.is.desktop
+            ? 'width=device-width'
+            : 'width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1' +
+              (this.$q.platform.is.cordova ? ', viewport-fit=cover' : '')
+        }
+      }
     }
   }
-}
+})
+export default class App extends Vue {}
+</script>
+
+<style>
 </style>

@@ -28,4 +28,3 @@ declare module 'zooming';
 //     // The z-index that the overlay will be added with.
 //     zIndex: Number;
 // }
-  

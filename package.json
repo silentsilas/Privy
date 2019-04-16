@@ -1,41 +1,51 @@
 {
-  "name": "passworker",
-  "version": "0.1.0",
+  "name": "passwork",
+  "version": "0.0.1",
+  "description": "An interactive & educational tool for generating passwords",
+  "productName": "Passwork",
+  "cordovaId": "com.silentsilas.passwork",
+  "author": "Silas <me@silentsilas.com>",
   "private": true,
-  "description": "An interactive and educational password generator",
-  "author": "Silent Silas <me@silentsilas.com>",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build",
-    "electron:serve": "vue-cli-service electron:serve",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
+    "lint": "eslint --ext .js,.vue src",
+    "test": "echo \"No test specified\" && exit 0"
   },
-  "main": "background.js",
   "dependencies": {
-    "core-js": "^2.6.5",
+    "axios": "^0.18.0",
+    "node-sass": "^4.11.0",
     "nouislider": "^13.1.4",
-    "vue": "^2.6.6",
-    "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^8.0.0",
-    "vue-router": "^3.0.1",
+    "quasar": "^1.0.0-beta.17",
+    "vue-i18n": "^7.3.3",
     "zooming": "^2.1.1"
   },
   "devDependencies": {
-    "@ionic/vue": "0.0.4",
     "@types/nouislider": "^9.0.5",
-    "@vue/cli-plugin-babel": "^3.5.0",
-    "@vue/cli-plugin-typescript": "^3.5.0",
-    "@vue/cli-service": "^3.5.0",
-    "electron": "^4.0.0",
-    "fibers": "^3.1.1",
-    "sass": "^1.17.2",
+    "devtron": "1.4.0",
+    "electron": "4.0.5",
+    "electron-debug": "2.1.0",
+    "electron-devtools-installer": "2.2.4",
+    "quasar-cli": "^0.17.0",
+    "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
-    "typescript": "^3.2.1",
-    "vue-cli-plugin-electron-builder": "^1.2.0",
-    "vue-template-compiler": "^2.5.21"
+    "strip-ansi": "=3.0.1",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.4.3",
+    "vue-class-component": "^7.0.2",
+    "vue-property-decorator": "^8.1.0"
   },
-  "productName": "Passworker"
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
+  "resolutions": {
+    "ajv": "6.8.1"
+  }
 }

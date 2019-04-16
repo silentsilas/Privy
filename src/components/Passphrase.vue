@@ -1,46 +1,37 @@
 <template>
     <div class="password">
-        <div class="row">
-            <div class="col c4">&nbsp;</div>
-            <div class="col c4">
-                <h2>Passphrase Settings</h2>
-                <div id="settings">
-                    <div class="slider" ref="wordsSliderEl"></div>
-                    <span>
-                        Characters Per Word: {{ min }} - {{ max }}<br /> 
-                        Total Words: {{ totalWords }}
-                    </span>
-                    <div class="slider" ref="phraseSliderEl"></div>
-                    <span>
-                        # of Words in Phrase: {{ phraseLength }}
-                    </span>
-                </div>
-            </div>
-            <div class="col c4">&nbsp;</div>
-        </div>
-        <div class="row">
-            <div class="col c4">&nbsp;</div>
-            <div class="col c4">
-            <button class="btn btn-b btn-sm smooth" @click="generatePassphrase">Regenerate!</button>
-            </div>
-            <div class="col c4">&nbsp;</div>
-        </div>  
-        <div class="row">
-            <div class="col c4">&nbsp;</div>
-            <div class="col c4">
-                <div id="output">{{ output }}</div><br />
-                <entropy v-bind:range="totalWords" v-bind:length="phraseLength"></entropy>
-            </div>
-            <div class="col c4">&nbsp;</div>
-        </div>
+
+      <h2>Passphrase Settings</h2>
+      <q-range
+        v-model="wordValues"
+        :min="1"
+        :max="31"
+        :step="1"
+        v-on:input="handleNewWords"
+      />
+      <span>
+          Characters Per Word: {{ min }} - {{ max }}<br />
+          Total Words: {{ totalWords }}
+      </span>
+      <q-slider v-model="phraseValue" :min="1" :max="10" :step="1" v-on:input="handleNewPhrase" />
+      <span>
+          # of Words in Phrase: {{ phraseLength }}
+      </span>
+      <q-btn label="Regenerate!" @click="generatePassphrase" />
+
+      <h6>{{ output }}</h6>
+      <entropy v-bind:range="totalWords" v-bind:length="phraseLength"></entropy>
     </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import 'nouislider/distribute/nouislider.css';
-import * as noUiSlider from 'nouislider';
 import Entropy from '@/components/Entropy.vue';
-import Words from '@/words.ts';
+import Words from '@/assets/words.ts';
+
+interface RangeValues {
+    min: number;
+    max: number;
+}
 
 @Component({
     components: {
@@ -50,60 +41,47 @@ import Words from '@/words.ts';
 export default class Passphrase extends Vue {
 //   @Prop() private msg!: string;
     private words!: Words;
-    private wordsSlider!: noUiSlider.noUiSlider;
-    private phraseSlider!: noUiSlider.noUiSlider;
     private min: number = 4;
     private max: number = 31;
     private phraseLength: number = 5;
     private totalWords: number = 0;
     private output: string = '';
 
+    private wordValues: RangeValues = {
+      min: 4,
+      max: 31
+    };
+
+    private phraseValue: number = 4;
+
     private mounted() {
         this.words = new Words();
-
-        this.wordsSlider = noUiSlider.create(this.$refs.wordsSliderEl as HTMLElement, {
-            start: [this.min, this.max],
-            connect: true,
-            range: {
-                min: 1,
-                max: 31,
-            },
-        });
-
-        this.phraseSlider = noUiSlider.create(this.$refs.phraseSliderEl as HTMLElement, {
-            start: [this.phraseLength],
-            connect: false,
-            range: {
-                min: 1,
-                max: 10,
-            },
-        });
-
-        this.words = new Words();
-        this.wordsSlider.on('update', (values, handle) => {
-            const newMin = Math.round(values[0]);
-            const newMax = Math.round(values[1]);
-            if (newMin !== this.min || newMax !== this.max) {
-                this.min = newMin;
-                this.max = newMax;
-                let newTotalWords = 0;
-
-                for (let idx = this.min - 1; idx < this.max; idx++) {
-                    newTotalWords += this.words.wordLengths[idx];
-                }
-                this.totalWords = newTotalWords;
-                this.generatePassphrase();
-            }
-
-        });
-        this.phraseSlider.on('update', (values) => {
-            const newValue: number = Math.round(values[0]);
-            if (newValue !== this.phraseLength) {
-                this.phraseLength = newValue;
-                this.generatePassphrase();
-            }
-        });
+        this.updateTotal();
         this.generatePassphrase();
+    }
+
+    private handleNewWords(newVal: RangeValues) {
+      if (newVal.min !== this.min || newVal.max !== this.max) {
+        this.min = newVal.min;
+        this.max = newVal.max;
+        this.updateTotal();
+        this.generatePassphrase();
+      }
+    }
+
+    private handleNewPhrase(newValue: number) {
+      if (newValue !== this.phraseLength) {
+          this.phraseLength = newValue;
+          this.generatePassphrase();
+      }
+    }
+
+    private updateTotal() {
+      let newTotalWords = 0;
+      for (let idx = this.min - 1; idx < this.max; idx++) {
+          newTotalWords += this.words.wordLengths[idx];
+      }
+      this.totalWords = newTotalWords;
     }
 
     private generatePassphrase() {

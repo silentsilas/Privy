@@ -6,18 +6,28 @@
             Entropy: {{ totalEntropy }}<br />
         </div>
         <div>
-            <div class="crack_container" id="guy">
+          <q-list>
+            <q-collapsible group="actors" icon="perm_identity" :label="guy.name">
+              <div>
                 <actor :name="guy.name" :guesses="guy.guesses" :combinations="combinations"></actor>
-            </div>
-            <div class="crack_container" id="company">
+              </div>
+            </q-collapsible>
+            <q-collapsible group="actors" icon="perm_identity" :label="company.name">
+              <div>
                 <actor :name="company.name" :guesses="company.guesses" :combinations="combinations"></actor>
-            </div>
-            <div class="crack_container" id ="state">
+              </div>
+            </q-collapsible>
+            <q-collapsible group="actors" icon="perm_identity" :label="state.name">
+              <div>
                 <actor :name="state.name" :guesses="state.guesses" :combinations="combinations"></actor>
-            </div>
-            <div class="crack_container" id="universe">
+              </div>
+            </q-collapsible>
+            <q-collapsible group="actors" icon="perm_identity" :label="world.name">
+              <div>
                 <actor :name="world.name" :guesses="world.guesses" :combinations="combinations"></actor>
-            </div>
+              </div>
+            </q-collapsible>
+          </q-list>
             <br />
                 Going by <router-link :to="`/chart/${totalEntropy}`"><span>this chart.</span></router-link>
             <br>
@@ -42,7 +52,7 @@ interface Attacker {
         Actor,
     },
 })
-export default class Password extends Vue {
+export default class Entropy extends Vue {
     @Prop(Number) private length!: number;
     @Prop(Number) private range!: number;
 
