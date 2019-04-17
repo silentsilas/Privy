@@ -1,39 +1,51 @@
 <template>
-    <div class="entropy_wrapper">
-        <div class="entropy">
-            Unique Characters: {{ range }}<br />
-            Total Password Combinations: {{ combinations.toLocaleString() }}<br />
-            Entropy: {{ totalEntropy }}<br />
-        </div>
-        <div>
-          <q-list>
-            <q-collapsible group="actors" icon="perm_identity" :label="guy.name">
-              <div>
-                <actor :name="guy.name" :guesses="guy.guesses" :combinations="combinations"></actor>
-              </div>
-            </q-collapsible>
-            <q-collapsible group="actors" icon="perm_identity" :label="company.name">
-              <div>
-                <actor :name="company.name" :guesses="company.guesses" :combinations="combinations"></actor>
-              </div>
-            </q-collapsible>
-            <q-collapsible group="actors" icon="perm_identity" :label="state.name">
-              <div>
-                <actor :name="state.name" :guesses="state.guesses" :combinations="combinations"></actor>
-              </div>
-            </q-collapsible>
-            <q-collapsible group="actors" icon="perm_identity" :label="world.name">
-              <div>
-                <actor :name="world.name" :guesses="world.guesses" :combinations="combinations"></actor>
-              </div>
-            </q-collapsible>
-          </q-list>
-            <br />
-                Going by <router-link :to="`/chart/${totalEntropy}`"><span>this chart.</span></router-link>
-            <br>
-            <br>
-        </div>
-    </div>
+  <div class="entropy_wrapper">
+    <q-list>
+      <q-item>
+        <q-item-main>
+          <q-item-tile label>Unique Characters:</q-item-tile>
+          <q-item-tile class="breakable" sublabel lines="3">{{ range }}</q-item-tile>
+        </q-item-main>
+      </q-item>
+      <q-item>
+        <q-item-main>
+          <q-item-tile label>Total Password Combinations:</q-item-tile>
+          <q-item-tile class="breakable" sublabel lines="5">{{ combinations.toLocaleString() }}</q-item-tile>
+        </q-item-main>
+      </q-item>
+      <q-item>
+        <q-item-main>
+          <q-item-tile label>Entropy:</q-item-tile>
+          <q-item-tile class="breakable" sublabel lines="3">{{ totalEntropy }}</q-item-tile>
+        </q-item-main>
+      </q-item>
+    </q-list>
+
+    <q-collapsible group="actors" icon="perm_identity" :label="guy.name">
+      <div>
+        <actor :name="guy.name" :guesses="guy.guesses" :combinations="combinations"></actor>
+      </div>
+    </q-collapsible>
+    <q-collapsible group="actors" icon="perm_identity" :label="company.name">
+      <div>
+        <actor :name="company.name" :guesses="company.guesses" :combinations="combinations"></actor>
+      </div>
+    </q-collapsible>
+    <q-collapsible group="actors" icon="perm_identity" :label="state.name">
+      <div>
+        <actor :name="state.name" :guesses="state.guesses" :combinations="combinations"></actor>
+      </div>
+    </q-collapsible>
+    <q-collapsible group="actors" icon="perm_identity" :label="world.name">
+      <div>
+        <actor :name="world.name" :guesses="world.guesses" :combinations="combinations"></actor>
+      </div>
+    </q-collapsible>
+    <br />
+        Going by <router-link :to="`/chart/${totalEntropy}`"><span>this chart.</span></router-link>
+    <br>
+    <br>
+  </div>
 </template>
 
 
@@ -131,3 +143,10 @@ export default class Entropy extends Vue {
 
 }
 </script>
+<style lang="scss">
+.breakable {
+  // word-wrap: break-word;
+  // max-width: vw;
+  word-break: break-all;
+}
+</style>

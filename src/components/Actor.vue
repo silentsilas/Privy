@@ -1,14 +1,19 @@
 <template>
     <div class="actor">
-        <div class="crack_header">For {{ name }} to crack it:</div>
-        <div class="crack_content">
-            <h3>Guaranteed:</h3>
-            {{ timescale(1) }}<br />
-            <h3>Average:</h3>
-            {{ timescale(2) }}<br />
-        </div>
-        <br />
-        <br />
+      <q-list link no-border>
+        <q-item tag="label">
+          <q-item-main>
+            <q-item-tile label>Guaranteed:</q-item-tile>
+            <q-item-tile class="breakable" sublabel lines="3">{{ timescale(1) }}</q-item-tile>
+          </q-item-main>
+        </q-item>
+        <q-item tag="label">
+          <q-item-main>
+            <q-item-tile label>Average:</q-item-tile>
+            <q-item-tile class="breakable" sublabel lines="3">{{ timescale(2) }}</q-item-tile>
+          </q-item-main>
+        </q-item>
+      </q-list>
     </div>
 </template>
 <script lang="ts">
@@ -60,3 +65,8 @@ export default class Actor extends Vue {
     }
 }
 </script>
+<style lang="scss">
+.breakable {
+  word-wrap: break-word;
+}
+</style>

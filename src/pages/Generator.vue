@@ -1,18 +1,41 @@
 <template>
-    <div class="generator">
-        <q-radio v-model="passType" val="passphrase" label="Passphrase" v-on:input="showPassphrase" />
-        <q-radio v-model="passType" val="password" label="Password" v-on:input="showPassword" />
+    <q-page class="generator row justify-center" :padding="true">
+      <q-list class="q-mt-md" no-border>
+        <q-list-header>Pick Your Poison</q-list-header>
+        <q-item link tag="label">
+          <q-item-side>
+            <q-radio v-model="passType" val="passphrase" v-on:input="showPassphrase" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Passphrase</q-item-tile>
+            <q-item-tile sublabel>
+              Randomly generate a string of words from the English dictionary.
+            </q-item-tile>
+          </q-item-main>
+        </q-item>
+        <q-item link tag="label">
+          <q-item-side>
+            <q-radio v-model="passType" val="password" v-on:input="showPassword" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Password</q-item-tile>
+            <q-item-tile sublabel>
+              Randomly generate a string of alphanumeric characters.
+            </q-item-tile>
+          </q-item-main>
+        </q-item>
+      </q-list>
 
-        <div v-if="showingPassword">
-            <Password></Password>
-        </div>
-        <div v-if="showingPassphrase">
-            <Passphrase></Passphrase>
-        </div>
+      <div v-if="showingPassword">
+          <Password></Password>
+      </div>
+      <div v-if="showingPassphrase">
+          <Passphrase></Passphrase>
+      </div>
 
-        <a href="https://github.com/Poeticode/Passwork">View Source</a>
+      <a href="https://github.com/Poeticode/Passwork">View Source</a>
 
-    </div>
+    </q-page>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';

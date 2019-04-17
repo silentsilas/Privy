@@ -1,18 +1,56 @@
 <template>
     <div class="password">
+      <q-list link no-border>
+        <q-list-header>Password Settings</q-list-header>
+        <q-item tag="label">
+          <q-item-side>
+            <q-checkbox v-model="uppercase" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Uppercase</q-item-tile>
+          </q-item-main>
+        </q-item>
+        <q-item tag="label">
+          <q-item-side>
+            <q-checkbox v-model="lowercase" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Lowercase</q-item-tile>
+          </q-item-main>
+        </q-item>
+        <q-item tag="label">
+          <q-item-side>
+            <q-checkbox v-model="digits" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Digits</q-item-tile>
+          </q-item-main>
+        </q-item>
+        <q-item tag="label">
+          <q-item-side>
+            <q-item-tile>Length: {{ charLength }}</q-item-tile>
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>
+              <q-slider v-model="wordLength" :min="1" :max="64" :step="1" v-on:input="handleNewWord" />
+            </q-item-tile>
+          </q-item-main>
+        </q-item>
 
-      <h2>Password Settings</h2>
-      <q-checkbox v-model="uppercase" label="Uppercase" />
-      <q-checkbox v-model="lowercase" label="Lowercase" />
-      <q-checkbox v-model="digits" label="Digits" />
-
-      <q-slider v-model="wordLength" :min="1" :max="64" :step="1" v-on:input="handleNewWord" />
-      <h6>Length: {{ charLength }}</h6>
-
-      <q-btn label="Regenerate!" @click="generatePassword" />
-
-      <h6>{{ output }}</h6>
+        <hr class="q-hr q-my-lg">
+        <q-item>
+          <q-item-main>
+            <q-btn color="primary" class="q-py-sm q-px-xl full-width" label="Regenerate!" @click="generatePassword" />
+          </q-item-main>
+        </q-item>
+        <q-item>
+          <q-item-main>
+            <q-item-tile style="word-break: break-all;">{{ output }}</q-item-tile>
+          </q-item-main>
+        </q-item>
+      </q-list>
       <entropy v-bind:range="range" v-bind:length="sliderValue"></entropy>
+
     </div>
 </template>
 
