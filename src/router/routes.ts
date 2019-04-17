@@ -1,14 +1,21 @@
-import { RouteConfig } from 'vue-router'
-import Generator from '@/pages/Generator.vue';
+import { RouteConfig } from 'vue-router';
+import Password from '@/pages/Password.vue';
+import Passphrase from '@/pages/Passphrase.vue';
 import Chart from '@/pages/Chart.vue';
 
 const routes: [RouteConfig] = [
   {
     path: '/',
-    name: 'generator',
-    component: Generator,
-  }
-]
+    name: 'password',
+    component: Password,
+  },
+];
+
+routes.push({
+  path: '/passphrase',
+  name: 'passphrase',
+  component: Passphrase,
+});
 
 routes.push({
     path: '/chart/:entropy',
@@ -21,8 +28,8 @@ if (process.env.MODE !== 'ssr') {
   routes.push({
     name: 'pages.errors.e404',
     path: '*',
-    component: () => import('@/pages/Error404.vue')
-  })
+    component: () => import('@/pages/Error404.vue'),
+  });
 }
 
-export default routes
+export default routes;

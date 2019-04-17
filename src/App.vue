@@ -3,18 +3,20 @@
   <q-layout>
     <!-- optional -->
     <q-layout-header>
-      <!-- content; any -->
       <q-toolbar>
         <q-toolbar-title>
           Passworker
-          <span slot="subtitle">Generator</span>
+          <!-- <span slot="subtitle">Generator</span> -->
         </q-toolbar-title>
       </q-toolbar>
+      <q-tabs>
+        <q-tab default slot="title" name="tab-2" v-on:select="toPassword">Password</q-tab>
+        <q-tab slot="title" name="tab-3" v-on:select="toPassphrase">Passphrase</q-tab>
+      </q-tabs>
     </q-layout-header>
 
     <!-- REQUIRED -->
     <q-page-container>
-
 
         <router-view />
 
@@ -44,7 +46,14 @@ import { Vue, Component } from 'vue-property-decorator'
     }
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private toPassword() {
+    this.$router.push({ path: '/' })
+  }
+  private toPassphrase() {
+    this.$router.push({ path: '/passphrase' })
+  }
+}
 </script>
 
 <style>

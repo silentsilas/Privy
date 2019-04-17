@@ -88,6 +88,8 @@ module.exports = function (ctx) {
         'QCheckbox',
         'QCollapsible',
         'QTable',
+        'QTabs',
+        'QTab',
         'QTh',
         'QTr',
         'QTd',
@@ -177,13 +179,6 @@ module.exports = function (ctx) {
         chainWebpackRendererProcess: config => {
           // Chain webpack config for electron renderer process only
           // The following example will set IS_ELECTRON to true in your app
-
-          config
-            .plugin('env')
-                .use(require.resolve('webpack/lib/ProvidePlugin'),[{
-                    noUiSlider: 'nouislider'
-                }]
-            );
         },
 
       }
