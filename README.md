@@ -1,4 +1,4 @@
-# Passworker
+# Privy
 
 #### Prerequisites
 * `yarn global add vue-cli quasar-cli`
