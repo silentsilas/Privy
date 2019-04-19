@@ -1,58 +1,69 @@
 <template>
   <q-page class="row justify-center" :padding="true">
     <div style="width: 500px; max-width: 90vw;">
-    <q-list link no-border>
-      <q-item>
-        <q-item-main label="Settings:" />
-      </q-item>
-      <q-item tag="label">
-        <q-item-side>
-          <q-checkbox v-model="uppercase" />
-        </q-item-side>
-        <q-item-main>
-          <q-item-tile label>Uppercase</q-item-tile>
-        </q-item-main>
-      </q-item>
-      <q-item tag="label">
-        <q-item-side>
-          <q-checkbox v-model="lowercase" />
-        </q-item-side>
-        <q-item-main>
-          <q-item-tile label>Lowercase</q-item-tile>
-        </q-item-main>
-      </q-item>
-      <q-item tag="label">
-        <q-item-side>
-          <q-checkbox v-model="digits" />
-        </q-item-side>
-        <q-item-main>
-          <q-item-tile label>Digits</q-item-tile>
-        </q-item-main>
-      </q-item>
-      <q-item>
-        <q-item-side>
-          <q-item-tile>Length: {{ charLength }}</q-item-tile>
-        </q-item-side>
-        <q-item-main>
-          <q-item-tile label>
-            <q-slider v-model="wordLength" :min="1" :max="64" :step="1" v-on:input="handleNewWord" />
-          </q-item-tile>
-        </q-item-main>
-      </q-item>
-
-      <hr class="q-hr q-my-lg">
-      <q-item>
-        <q-item-main>
-          <q-btn color="primary" class="q-py-sm q-px-xl full-width" label="Regenerate!" @click="generatePassword" />
-        </q-item-main>
-      </q-item>
-      <q-item>
-        <q-item-main>
-          <q-item-tile style="word-break: break-all;">{{ output }}</q-item-tile>
-        </q-item-main>
-      </q-item>
-    </q-list>
-      <entropy v-bind:range="range" v-bind:length="sliderValue" type="Characters"></entropy>
+      <q-list no-border>
+        <q-item tag="label">
+          <q-item-side>
+            <q-checkbox v-model="uppercase" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Uppercase</q-item-tile>
+          </q-item-main>
+          <q-item-side right>
+            <q-item-tile>26 Characters</q-item-tile>
+          </q-item-side>
+        </q-item>
+        <q-item tag="label">
+          <q-item-side>
+            <q-checkbox v-model="lowercase" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Lowercase</q-item-tile>
+          </q-item-main>
+          <q-item-side right>
+            <q-item-tile>26 Characters</q-item-tile>
+          </q-item-side>
+        </q-item>
+        <q-item tag="label">
+          <q-item-side>
+            <q-checkbox v-model="digits" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>Digits</q-item-tile>
+          </q-item-main>
+          <q-item-side right>
+            <q-item-tile>10 Characters</q-item-tile>
+          </q-item-side>
+        </q-item>
+        <q-item>
+          <q-item-main>
+            <q-item-tile label>
+              <q-slider v-model="wordLength" :min="1" :max="64" :step="1" v-on:input="handleNewWord" />
+            </q-item-tile>
+          </q-item-main>
+        </q-item>
+        <q-item>
+          <q-item-main>
+            <q-item-tile>Length of Password: {{ charLength }}</q-item-tile>
+          </q-item-main>
+        </q-item>
+        <hr class="q-hr q-my-lg">
+        <q-item>
+          <q-item-main>
+            <q-btn color="primary" class="q-py-sm q-px-xl full-width" label="Regenerate!" @click="generatePassword" />
+          </q-item-main>
+        </q-item>
+        <q-item>
+          <q-item-main>
+            <q-item-tile label>Output:</q-item-tile>
+            <q-item-tile style="word-break: break-all;" sublabel lines="3">{{ output }}</q-item-tile>
+            <input type="hidden" ref="output" v-model="output" />
+          </q-item-main>
+          <q-item-side right icon="file_copy" @click.native="copyPassword" />
+        </q-item>
+        <hr class="q-hr q-my-lg">
+        <entropy v-bind:range="range" v-bind:length="sliderValue" type="Characters"></entropy>
+      </q-list>
     </div>
   </q-page>
 </template>
@@ -132,6 +143,29 @@ export default class Password extends Vue {
       password += String.fromCharCode(this.allowedChars[validIdx]);
     }
     this.output = `${password}`;
+  }
+
+  private copyPassword() {
+    const outputEl: HTMLInputElement = (<HTMLInputElement> this.$refs.output);
+    outputEl.setAttribute('type', 'text');
+    outputEl.select();
+    try {
+      const successful:boolean = document.execCommand('copy');
+      const msg:string = successful ? 'successful' : 'unsuccessful';
+
+      this.$q.notify({
+        message: "Successfully copied to clipboard!",
+        position: 'bottom', // 'top', 'left', 'bottom-left' etc.
+      });
+
+    } catch (err) {
+      this.$q.notify({
+        message: `Unable to copy to clipboard: ${err}`,
+        position: 'bottom', // 'top', 'left', 'bottom-left' etc.
+      });
+    }
+
+    outputEl.setAttribute('type', 'hidden')
   }
 }
 </script>

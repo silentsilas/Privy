@@ -1,9 +1,9 @@
 {
-  "name": "passwork",
+  "name": "pr1vy",
   "version": "0.0.1",
   "description": "An interactive & educational tool for generating passwords",
-  "productName": "Passwork",
-  "cordovaId": "com.silentsilas.passwork",
+  "productName": "Pr1vy",
+  "cordovaId": "com.silentsilas.pr1vy",
   "author": "Silas <me@silentsilas.com>",
   "private": true,
   "scripts": {

@@ -4,13 +4,13 @@
         <q-item tag="label">
           <q-item-main>
             <q-item-tile label>Guaranteed:</q-item-tile>
-            <q-item-tile class="breakable" sublabel lines="3">{{ timescale(1) }}</q-item-tile>
+            <q-item-tile class="breakable" sublabel lines="4">{{ timescale(1) }}</q-item-tile>
           </q-item-main>
         </q-item>
         <q-item tag="label">
           <q-item-main>
             <q-item-tile label>Average:</q-item-tile>
-            <q-item-tile class="breakable" sublabel lines="3">{{ timescale(2) }}</q-item-tile>
+            <q-item-tile class="breakable" sublabel lines="4">{{ timescale(2) }}</q-item-tile>
           </q-item-main>
         </q-item>
       </q-list>

@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.silentsilas.passwork" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Passwork</name>
+<widget id="com.silentsilas.pr1vy" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Pr1vy</name>
     <description>An interactive &amp; educational tool for generating passwords</description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
     <content src="index.html" />
+    <icon density="mdpi" height="180" platform="ios" src="www/statics/icons/apple-touch-icon_180.png" width="180" />
+    <icon density="mdpi" height="192" platform="android" src="www/statics/icons/android-chrome-192x192.png" width="192" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -14,10 +16,15 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <preference name="android-minSdkVersion" value="26" />
-        <preference name="android-targetSdkVersion" value="26" />
+        <splash qualifier="port-hdpi" src="www/statics/splash/splash_portrait.PNG" />
+        <splash qualifier="port-ldpi" src="www/statics/splash/splash_portrait.PNG" />
+        <splash qualifier="port-mdpi" src="www/statics/splash/splash_portrait.PNG" />
+        <splash qualifier="port-xhdpi" src="www/statics/splash/splash_portrait.PNG" />
+        <preference name="SplashScreen" value="screen" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

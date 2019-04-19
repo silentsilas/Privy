@@ -1,6 +1,6 @@
 <template>
-  <div class="entropy_wrapper">
-    <q-list no-border>
+  <div>
+    <q-collapsible icon="fingerprint" label="Key Space" sublabel="How difficult it is to guess">
       <q-item>
         <q-item-main>
           <q-item-tile label>Unique {{ type }}:</q-item-tile>
@@ -19,41 +19,39 @@
           <q-item-tile class="breakable" sublabel lines="3">{{ totalEntropy }}</q-item-tile>
         </q-item-main>
       </q-item>
-      <hr class="q-hr q-my-lg">
-      <q-item>
-        <q-item-main label="Crackability:" />
-      </q-item>
-      <q-collapsible group="actors" icon="perm_identity" :label="guy.name">
+    </q-collapsible>
+    <hr class="q-hr q-my-lg">
+    <q-collapsible icon="hourglass_empty" label="Crackability" sublabel="How fast it can be guessed">
+      <q-collapsible icon="perm_identity" :label="guy.name">
         <div>
           <actor :name="guy.name" :guesses="guy.guesses" :combinations="combinations"></actor>
         </div>
       </q-collapsible>
-      <q-collapsible group="actors" icon="perm_identity" :label="company.name">
+      <q-collapsible icon="perm_identity" :label="company.name">
         <div>
           <actor :name="company.name" :guesses="company.guesses" :combinations="combinations"></actor>
         </div>
       </q-collapsible>
-      <q-collapsible group="actors" icon="perm_identity" :label="state.name">
+      <q-collapsible icon="perm_identity" :label="state.name">
         <div>
           <actor :name="state.name" :guesses="state.guesses" :combinations="combinations"></actor>
         </div>
       </q-collapsible>
-      <q-collapsible group="actors" icon="perm_identity" :label="world.name">
+      <q-collapsible icon="perm_identity" :label="world.name">
         <div>
           <actor :name="world.name" :guesses="world.guesses" :combinations="combinations"></actor>
         </div>
       </q-collapsible>
-      <hr class="q-hr q-my-lg">
-      <q-item>
-        <q-item-main>
-          Cracking calculations via <router-link :to="`/chart/${totalEntropy}`"><span>this chart.</span></router-link>
-        </q-item-main>
-      </q-item>
-      <q-item v-on:click.native="openURL('https://github.com/Poeticode/Passwork/')">
-        <q-item-side icon="code" />
-        <q-item-main label="View Source" sublabel="https://github.com/Poeticode/Passwork" />
-      </q-item>
-    </q-list>
+    </q-collapsible>
+    <hr class="q-hr q-my-lg">
+    <q-btn type="a" class="full-width q-py-sm q-px-xl" href="https://github.com/Poeticode/Privy/">
+      <q-item-main label="View Source" sublabel="https://github.com/Poeticode/Privy" />
+    </q-btn>
+    <q-item>
+      <q-item-main>
+        Cracking calculations via <a href="http://i.imgur.com/e3mGIFY.png" target="_blank"><span>this chart.</span></a>
+      </q-item-main>
+    </q-item>
   </div>
 </template>
 
@@ -80,7 +78,7 @@ export default class Entropy extends Vue {
     @Prop(String) private type!: string;
 
     private guy: Attacker = {
-        name: 'that one sketchy dude in a black hoodie at your local coffee shop',
+        name: 'That dude in a black hoodie at your local coffee shop',
         guesses: 100000000000,
     };
 

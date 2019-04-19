@@ -5,13 +5,17 @@
     <q-layout-header>
       <q-toolbar>
         <q-toolbar-title>
-          Passworker
-          <!-- <span slot="subtitle">Generator</span> -->
+          Pr1vy
+          <span slot="subtitle">Speak the language.</span>
         </q-toolbar-title>
       </q-toolbar>
       <q-tabs>
-        <q-tab default slot="title" name="tab-2" v-on:select="toPassword">Password</q-tab>
-        <q-tab slot="title" name="tab-3" v-on:select="toPassphrase">Passphrase</q-tab>
+        <!-- <q-tab default slot="title" name="tab-1" v-on:select="toPassword" icon="font_downloaded" label="Word" /> -->
+        <q-route-tab slot="title" to="/" replace label="Word" />
+        <q-route-tab slot="title" to="/passphrase" replace label="Phrase" />
+        <q-route-tab slot="title" to="/keys" replace label="Keys" />
+        <q-route-tab slot="title" to="/hash" replace label="Hash" />
+        <q-route-tab slot="title" to="/chat" replace label="Chat" />
       </q-tabs>
     </q-layout-header>
 
@@ -47,12 +51,6 @@ import { Vue, Component } from 'vue-property-decorator'
   }
 })
 export default class App extends Vue {
-  private toPassword() {
-    this.$router.push({ path: '/' })
-  }
-  private toPassphrase() {
-    this.$router.push({ path: '/passphrase' })
-  }
 }
 </script>
 
