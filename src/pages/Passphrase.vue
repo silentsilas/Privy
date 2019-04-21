@@ -162,24 +162,24 @@ export default class Passphrase extends Vue {
 
     private generatePassphrase() {
 
-        // we'll go through and concat all of our words into one array to choose from
-        const validWordsArr = [];
-        for (let idx = this.min; idx < this.max; idx++) {
-            validWordsArr.push(this.words.wordLists[idx]);
-        }
-        const validWords = Array.prototype.concat.apply([], validWordsArr);
+      // we'll go through and concat all of our words into one array to choose from
+      const validWordsArr = [];
+      for (let idx = this.min - 1; idx < this.max; idx++) {
+        validWordsArr.push(this.words.wordLists[idx]);
+      }
+      const validWords = Array.prototype.concat.apply([], validWordsArr);
 
-        // create an array of cryptographically-random values
-        const random = new Uint32Array(this.phraseLength);
-        window.crypto.getRandomValues(random);
+      // create an array of cryptographically-random values
+      const random = new Uint32Array(this.phraseLength);
+      window.crypto.getRandomValues(random);
 
-        // now we create the password string
-        let passphrase = '';
-        for (let idx = 0; idx < this.phraseLength; idx++) {
-            const validIdx = random[idx] % validWords.length;
-            passphrase += validWords[validIdx] + ' ';
-        }
-        this.output = `${passphrase}`;
+      // now we create the password string
+      let passphrase = '';
+      for (let idx = 0; idx < this.phraseLength; idx++) {
+        const validIdx = random[idx] % validWords.length;
+        passphrase += validWords[validIdx] + ' ';
+      }
+      this.output = `${passphrase}`;
     }
 
     private copyPassphrase() {
