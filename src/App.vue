@@ -35,9 +35,9 @@ import { Vue, Component } from 'vue-property-decorator'
   // @ts-ignore
   meta () {
     return {
-      titleTemplate: (title: any) => `Quasar TypeScript - ${title}`,
+      titleTemplate: (title: any) => `Pr1vy - ${title}`,
       meta: {
-        description: { name: 'description', content: 'Main description' },
+        description: { name: 'description', content: 'Speak the language' },
         // Define the viewport depending on device (prevent zoom on mobile devices)
         viewport: {
           name: 'viewport',

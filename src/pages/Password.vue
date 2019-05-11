@@ -35,6 +35,19 @@
             <q-item-tile>10 Characters</q-item-tile>
           </q-item-side>
         </q-item>
+        <q-item tag="label">
+          <q-item-side>
+            <q-checkbox v-model="punctuation" />
+          </q-item-side>
+          <q-item-main>
+            <q-item-tile label>
+              ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; &gt; = ? @ [ ] \ ^ _
+            </q-item-tile>
+          </q-item-main>
+          <q-item-side right>
+            <q-item-tile>27 Characters</q-item-tile>
+          </q-item-side>
+        </q-item>
         <q-item>
           <q-item-main>
             <q-item-tile label>
@@ -83,6 +96,7 @@ export default class Password extends Vue {
   private uppercase: boolean = true;
   private lowercase: boolean = true;
   private digits: boolean = true;
+  private punctuation: boolean = true;
   private output: string = '';
 
   private sliderValue: number = 16;
@@ -109,8 +123,7 @@ export default class Password extends Vue {
     allowed = this.uppercase ? allowed.concat(Settings.uppercase.UNICODES) : allowed;
     allowed = this.lowercase ? allowed.concat(Settings.lowercase.UNICODES) : allowed;
     allowed = this.digits ? allowed.concat(Settings.digits.UNICODES) : allowed;
-
-    console.log(this.uppercase);
+    allowed = this.punctuation ? allowed.concat(Settings.punctuation.UNICODES) : allowed;
 
     // if no checkboxes were checked, then we have no unicode values to choose from
     if (allowed.length <= 0) {
@@ -126,6 +139,7 @@ export default class Password extends Vue {
     newRange += this.uppercase ? Settings.uppercase.COUNT : 0;
     newRange += this.lowercase ? Settings.lowercase.COUNT : 0;
     newRange += this.digits ? Settings.digits.COUNT : 0;
+    newRange += this.punctuation ? Settings.punctuation.COUNT : 0;
     return newRange;
   }
 

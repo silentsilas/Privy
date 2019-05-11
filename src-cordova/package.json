@@ -2,7 +2,7 @@
   "name": "com.silentsilas.pr1vy",
   "displayName": "Pr1vy",
   "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "description": "An interactive & educational tool for generating passwords.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
   "keywords": [
     "ecosystem:cordova"
   ],
-  "author": "Apache Cordova Team",
+  "author": "Silas Tippens",
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^8.0.0",

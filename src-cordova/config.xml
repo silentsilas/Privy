@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.silentsilas.pr1vy" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.silentsilas.pr1vy" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Pr1vy</name>
     <description>An interactive &amp; educational tool for generating passwords</description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="me@silentsilas.com" href="https://silentsilas.com">
+      Silent Silas
     </author>
     <content src="index.html" />
     <icon density="mdpi" height="180" platform="ios" src="www/statics/icons/apple-touch-icon_180.png" width="180" />
