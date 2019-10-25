@@ -7,7 +7,6 @@
     </author>
     <content src="index.html" />
     <icon density="mdpi" height="180" platform="ios" src="www/statics/icons/apple-touch-icon_180.png" width="180" />
-    <icon density="mdpi" height="192" platform="android" src="www/statics/icons/android-chrome-192x192.png" width="192" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -20,6 +19,12 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon density="ldpi" src="www/statics/icons/Android/Icon-36.png" />
+        <icon density="mdpi" src="www/statics/icons/Android/Icon-48.png" />
+        <icon density="hdpi" src="www/statics/icons/Android/Icon-72.png" />
+        <icon density="xhdpi" src="www/statics/icons/Android/Icon-96.png" />
+        <icon density="xxhdpi" src="www/statics/icons/Android/Icon-144.png" />
+        <icon density="xxxhdpi" src="www/statics/icons/Android/Icon-192.png" />
         <splash qualifier="port-hdpi" src="www/statics/splash/splash_portrait.PNG" />
         <splash qualifier="port-ldpi" src="www/statics/splash/splash_portrait.PNG" />
         <splash qualifier="port-mdpi" src="www/statics/splash/splash_portrait.PNG" />
