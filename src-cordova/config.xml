@@ -19,7 +19,6 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon density="ldpi" src="www/statics/icons/Android/Icon-36.png" />
         <icon density="mdpi" src="www/statics/icons/Android/Icon-48.png" />
         <icon density="hdpi" src="www/statics/icons/Android/Icon-72.png" />
         <icon density="xhdpi" src="www/statics/icons/Android/Icon-96.png" />

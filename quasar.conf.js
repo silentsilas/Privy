@@ -1,5 +1,6 @@
 // Configuration for your app
 const path = require('path')
+const webpack = require('webpack');
 const extendTypescriptToWebpack = (config) => {
   config.resolve
     .extensions
@@ -51,6 +52,12 @@ module.exports = function (ctx) {
             .set('@', path.resolve(__dirname, 'src'))
       },
       // extendWebpack (cfg) {
+      //   cfg.plugins.push(
+      //     new webpack.ProvidePlugin({
+      //       BigInt: 'bigint-polyfill'
+      //     })
+      //   )
+      // },
       //   cfg.module.rules.push({
       //     enforce: 'pre',
       //     test: /\.(js|vue)$/,
@@ -122,7 +129,7 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {},
       manifest: {
-        name: 'Passworker',
+        name: 'Privy',
         // short_name: 'Quasar-PWA',
         // description: 'Best PWA App in town!',
         display: 'standalone',
@@ -131,7 +138,7 @@ module.exports = function (ctx) {
         theme_color: '#027be3',
         icons: [
           {
-            'src': 'statics/icons/android-chrome-192x192.png',
+            'src': 'statics/icons/Android/Icon-192.png',
             'sizes': '192x192',
             'type': 'image/png'
           }
@@ -161,7 +168,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'Passworker',
+        appId: 'Privy',
         chainWebpackRendererProcess: config => {
           // Chain webpack config for electron renderer process only
           // The following example will set IS_ELECTRON to true in your app
