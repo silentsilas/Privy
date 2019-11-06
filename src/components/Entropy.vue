@@ -24,22 +24,22 @@
     <q-collapsible icon="hourglass_empty" label="Crackability" sublabel="How fast it can be guessed">
       <q-collapsible icon="perm_identity" :label="guy.name">
         <div>
-          <actor :name="guy.name" :guesses="guy.guesses" :combinations="combinations"></actor>
+          <actor :name="guy.name" :guesses="guy.guesses" :combinations="combinations" :explanation="guy.explanation"></actor>
         </div>
       </q-collapsible>
       <q-collapsible icon="perm_identity" :label="company.name">
         <div>
-          <actor :name="company.name" :guesses="company.guesses" :combinations="combinations"></actor>
+          <actor :name="company.name" :guesses="company.guesses" :combinations="combinations" :explanation="company.explanation"></actor>
         </div>
       </q-collapsible>
       <q-collapsible icon="perm_identity" :label="state.name">
         <div>
-          <actor :name="state.name" :guesses="state.guesses" :combinations="combinations"></actor>
+          <actor :name="state.name" :guesses="state.guesses" :combinations="combinations" :explanation="state.explanation"></actor>
         </div>
       </q-collapsible>
       <q-collapsible icon="perm_identity" :label="world.name">
         <div>
-          <actor :name="world.name" :guesses="world.guesses" :combinations="combinations"></actor>
+          <actor :name="world.name" :guesses="world.guesses" :combinations="combinations" :explanation="world.explanation"></actor>
         </div>
       </q-collapsible>
     </q-collapsible>
@@ -65,6 +65,7 @@ import { openURL } from 'quasar';
 interface Attacker {
     name: string;
     guesses: number;
+    explanation?: string;
 }
 
 @Component({
@@ -79,22 +80,26 @@ export default class Entropy extends Vue {
 
     private guy: Attacker = {
         name: 'That dude in a black hoodie at your local coffee shop',
-        guesses: 100000000000,
+        guesses: 1000000000,
+        explanation: "using a few top-end Nvidia GPUs on his desktop PC back home."
     };
 
     private company: Attacker = {
         name: 'Evil Corp',
-        guesses: 1000000000000,
+        guesses: 100000000000,
+        explanation: "using a handful of dedicated hash-cracking rigs."
     };
 
     private state: Attacker = {
         name: 'Big Brother',
         guesses: 100000000000000,
+        explanation: "using hundreds of dedicated hash-cracking rigs, and a botnet or two."
     };
 
     private world: Attacker = {
         name: 'The Illuminati',
         guesses: 1000000000000000,
+        explanation: "using the finest quantum computers in all of Andromeda."
     };
 
     private timescale = (seconds: number): string => {
