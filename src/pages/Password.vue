@@ -42,7 +42,7 @@
           </q-item-side>
           <q-item-main>
             <q-item-tile label>
-              Special Characters
+              Symbols
             </q-item-tile>
           </q-item-main>
           <q-item-side right>
@@ -80,8 +80,8 @@
       </q-list>
       <q-dialog
         v-model="punctuationPopup"
-        title='Special Characters'
-        message="Select all characters you'd like to have potentially appear in your password."
+        title='Symbols'
+        message="Select which symbols you'd like to have potentially appear in your password."
         :options="punctuationOptions"
         cancel
         color='secondary'
