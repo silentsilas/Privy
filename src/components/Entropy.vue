@@ -61,6 +61,7 @@ const path = require('path');
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Actor from '@/components/Actor.vue';
 import { openURL } from 'quasar';
+import * as numFormatter from 'number-to-words';
 
 interface Attacker {
     name: string;

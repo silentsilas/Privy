@@ -1,4 +1,33 @@
 // https://www.ssec.wisc.edu/~tomw/java/unicode.html#x0000
+const unicodes = new Map();
+unicodes.set(33,`!`); 
+unicodes.set(35, `#`);
+unicodes.set(36, `$`);
+unicodes.set(37, `%`);
+unicodes.set(38, `&`);
+unicodes.set(40, `(`);
+unicodes.set(41, `)`);
+unicodes.set(43, `+`);
+unicodes.set(45, `-`);
+unicodes.set(46, `.`);
+unicodes.set(47, `/`);
+unicodes.set(58, `:`);
+unicodes.set(59, `;`);
+unicodes.set(60, `&lt;`);
+unicodes.set(61, `=`);
+unicodes.set(62, `&gt;`);
+unicodes.set(63, `?`);
+unicodes.set(64, `@`);
+unicodes.set(91, `[`);
+unicodes.set(92, `\\`);
+unicodes.set(93, `]`);
+unicodes.set(94, `^`);
+unicodes.set(95, `_`);
+unicodes.set(123, `{`);
+unicodes.set(124, `|`);
+unicodes.set(125, `}`);
+unicodes.set(126, `~`);
+
 export default {
   password_length: 10,
   uppercase: {
@@ -75,14 +104,6 @@ export default {
   },
   punctuation: {
     allowed: false,
-    COUNT: 27,
-    UNICODES: [
-      33, 35, 36, 37, 38,
-      40, 41, 43, 45, 46,
-      47, 58, 59, 60, 61,
-      62, 63, 64, 91, 92,
-      93, 94, 95, 123, 124,
-      125, 126,
-    ],
+    UNICODES: unicodes
   },
 };

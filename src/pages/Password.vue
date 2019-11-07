@@ -35,17 +35,18 @@
             <q-item-tile>10 Characters</q-item-tile>
           </q-item-side>
         </q-item>
-        <q-item tag="label">
+        <q-item tag="label" 
+          @click.native="showPunctuation()">
           <q-item-side>
-            <q-checkbox v-model="punctuation" />
+            <q-checkbox indeterminate-value="partial" v-model="punctuation" disable />
           </q-item-side>
           <q-item-main>
             <q-item-tile label>
-              ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; &gt; = ? @ [ ] \ ^ _
+              Special Characters
             </q-item-tile>
           </q-item-main>
           <q-item-side right>
-            <q-item-tile>27 Characters</q-item-tile>
+            <q-item-tile>{{ selectedPunctuation.length }} Characters</q-item-tile>
           </q-item-side>
         </q-item>
         <q-item>
@@ -77,14 +78,33 @@
         <hr class="q-hr q-my-lg">
         <entropy v-bind:range="range" v-bind:length="sliderValue" type="Characters"></entropy>
       </q-list>
+      <q-dialog
+        v-model="punctuationPopup"
+        title='Special Characters'
+        message="Select all characters you'd like to have potentially appear in your password."
+        :options="punctuationOptions"
+        cancel
+        color='secondary'
+        :prevent-close='true'
+        @ok="confirmPunctuation">
+          <template slot="buttons" slot-scope="props">
+            <q-btn color="primary" label="Confirm" @click="props.ok" />
+          </template>
+      </q-dialog>
     </div>
   </q-page>
 </template>
 
 <script lang="ts">
+import { QDialog } from 'quasar';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Settings from '@/assets/settings.ts';
 import Entropy from '@/components/Entropy.vue';
+
+interface Unicode {
+  character: string,
+  code: number
+}
 
 @Component({
   components: {
@@ -96,7 +116,8 @@ export default class Password extends Vue {
   private uppercase: boolean = true;
   private lowercase: boolean = true;
   private digits: boolean = true;
-  private punctuation: boolean = true;
+  private punctuation: boolean | string = false;
+  private punctuationPopup: boolean = false;
   private output: string = '';
 
   private sliderValue: number = 16;
@@ -105,6 +126,8 @@ export default class Password extends Vue {
   private get charLength(): number {
     return this.sliderValue;
   }
+
+  private selectedPunctuation: number[] = [];
 
   private mounted() {
     this.generatePassword();
@@ -117,13 +140,54 @@ export default class Password extends Vue {
       }
   }
 
+  private showPunctuation() {
+    this.punctuationPopup = true;
+  }
+
+  private confirmPunctuation(data: number[]) {
+    this.selectedPunctuation = data;
+    if (data.length >= 27) {
+      this.punctuation = true;
+    } else if (data.length > 0) {
+      this.punctuation = 'partial';
+    } else {
+      this.punctuation = false;
+    }
+    console.log("confirming");
+    console.log(data);
+  }
+
+  private get punctuationItems() {
+    let items: any[] = [];
+
+    Settings.punctuation.UNICODES.forEach((val, key, unicode) => {
+      items.push({
+        label: val,
+        value: key
+      });
+    });
+    return items;
+  }
+
+  private punctuationOptions = {
+    type: 'checkbox',
+    model: [],
+    items: this.punctuationItems
+  }
+
   private get allowedChars(): number[] {
     // get our array of valid unicode values that we can choose from
     let allowed: number[] = [];
     allowed = this.uppercase ? allowed.concat(Settings.uppercase.UNICODES) : allowed;
     allowed = this.lowercase ? allowed.concat(Settings.lowercase.UNICODES) : allowed;
     allowed = this.digits ? allowed.concat(Settings.digits.UNICODES) : allowed;
-    allowed = this.punctuation ? allowed.concat(Settings.punctuation.UNICODES) : allowed;
+    if (this.selectedPunctuation.length > 0) {
+      this.selectedPunctuation.forEach(unicode => {
+        console.log(unicode);
+        allowed.push(unicode);
+      });
+    }
+    // allowed = this.punctuation ? allowed.concat(Settings.punctuation.UNICODES) : allowed;
 
     // if no checkboxes were checked, then we have no unicode values to choose from
     if (allowed.length <= 0) {
@@ -139,7 +203,7 @@ export default class Password extends Vue {
     newRange += this.uppercase ? Settings.uppercase.COUNT : 0;
     newRange += this.lowercase ? Settings.lowercase.COUNT : 0;
     newRange += this.digits ? Settings.digits.COUNT : 0;
-    newRange += this.punctuation ? Settings.punctuation.COUNT : 0;
+    newRange += this.selectedPunctuation.length;
     return newRange;
   }
 
@@ -183,3 +247,16 @@ export default class Password extends Vue {
   }
 }
 </script>
+<style lang="scss">
+.q-option-group > div {
+  width: 50px;
+  margin: 0px;
+  flex-wrap: wrap;
+  display: inline-block;
+  margin-top: 15px;
+}
+.q-option-group {
+  max-width: 500px;
+  text-align: center;
+}
+</style>

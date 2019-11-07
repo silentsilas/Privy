@@ -93,6 +93,7 @@ module.exports = function (ctx) {
         'QItemMain',
         'QItemSide',
         'QItemTile',
+        'QDialog',
         'QRange',
         'QSelect',
         'QSlider',
