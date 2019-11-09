@@ -23,8 +23,7 @@ module.exports = function (ctx) {
       router: 'src/router/index.ts',
     },
     plugins: [
-      'i18n',
-      'axios'
+      'i18n'
     ],
     css: [
       'app.styl'
