@@ -1,6 +1,6 @@
 {
   "name": "pr1vy",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "An interactive & educational tool for generating passwords",
   "productName": "Pr1vy",
   "cordovaId": "com.silentsilas.pr1vy",
