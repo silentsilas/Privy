@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.18.1",
     "big-integer": "^1.6.47",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "nouislider": "^13.1.4",
     "number-to-words": "github:OmgImAlexis/number-to-words",
     "quasar": "^1.0.0-beta.17",
