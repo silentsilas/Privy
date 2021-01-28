@@ -27,7 +27,7 @@
     "@types/nouislider": "^9.0.5",
     "autoprefixer": "^9.7.1",
     "devtron": "1.4.0",
-    "electron": "4.0.5",
+    "electron": "9.4.0",
     "electron-debug": "2.1.0",
     "electron-devtools-installer": "2.2.4",
     "quasar-cli": "^0.17.0",
